@@ -1,7 +1,6 @@
-from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 
-from .models import Teams, Student, Teacher
+from study.models import Teams, Student, Teacher
 
 from django.views import View
 
@@ -47,6 +46,6 @@ class StudentDetailView(BaseContextView):
     page_title = 'домашние задание для студента'
     template = 'home_work.html'
 
-    def get(self, request, id):
-        st = get_object_or_404(Student, pk=id)
-        return self.render_response(context={'st': st})
+    def get(self, request, pk):
+        st = get_object_or_404(Student, pk=pk)
+        return self.render_response(context={'std': st})

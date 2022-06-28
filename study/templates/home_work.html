@@ -1,19 +1,12 @@
-{% load bootstrap5 %}
+{% extends "base.html" %}
 
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
 
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
+{% block title %}home work{% endblock %}
 
-{# Display a form #}
-<form action="/url/to/submit/" method="post" class="form">
-  {% csrf_token %}
-  {% bootstrap_form form %}
-  {% buttons %}
-    <button type="submit" class="btn btn-primary">
-      Submit
-    </button>
-  {% endbuttons %}
-</form>
+{% block content %}
+
+    {% for stu in std  %}
+        {{ stu. }}
+    {% endfor %}
+
+{% endblock %}
