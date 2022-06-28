@@ -4,5 +4,11 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-123
+
+    {% if user.is_authenticated %}
+        <a class="ml-1 btn btn-sm btn-outline-success" href="{% url 'logout' %}">Выйти</a>
+    {% else %}
+        <a class="ml-1 btn btn-sm btn-outline-success" href="{% url 'login' %}">Войти</a>
+    {% endif %}
+
 {% endblock %}
