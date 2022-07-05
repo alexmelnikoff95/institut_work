@@ -1,24 +1,19 @@
 .custom-container {
-    max-width: 100%;
-    height: 240px;
-    margin: auto;
-    object-fit: cover;
-    min-height: 240px;
-}
-
-.member-profile .div {
-    max-width: 100%;
-    height: 1px;
+    width: 100%;
     margin: 0 auto;
-
-    min-height: 1px;
+    max-width: 1720px;
+    padding: 0 20px;
 }
 
-.card-avatar-head > img {
-    height: 32px;
-    width: 32px;
-    border-radius: 50% !important;
-    object-fit: cover;
+.customer-card {
+    max-width: 490px;
+    width: 490px;
+    padding: 0;
+    height: auto;
+}
+
+.customer-card .separator {
+    display: flex;
 }
 
 .customer-card .card-avatar {
@@ -26,6 +21,7 @@
     min-width: 180px;
     width: 180px;
 }
+
 
 .card-avatar > img {
     max-width: 100%;
@@ -35,9 +31,11 @@
     min-height: 240px;
 }
 
-.member-profile > .card-avatar-head > img:hover {
-    cursor: pointer;
-    filter: brightness(0.8);
+.card-avatar-head > img {
+    height: 32px;
+    width: 32px;
+    border-radius: 50% !important;
+    object-fit: cover;
 }
 
 
@@ -49,9 +47,86 @@
     align-items: center;
 }
 
+.member-profile > div {
+    align-self: center;
+}
+
+.member-profile > .card-avatar-head > img:hover {
+    cursor: pointer;
+    filter: brightness(0.8);
+}
+
+li.head-section {
+    background-color: #30eebf;
+}
+
+li.head-section:hover {
+    background-color: #20a482;
+}
+
+a.danger-link {
+    color: #c74f39 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    li.head-section {
+        background-color: #114d72;
+    }
+
+    a.danger-link {
+        color: #c74f39 !important;
+    }
+
+    li.head-section:hover {
+        background-color: #244db4;
+    }
+}
+
+li.head-section.start {
+    border-radius: 5px 0 0 5px;
+}
+
+li.head-section.end {
+    border-radius: 0 5px 5px 0;
+}
 
 
-.customer-card .separator {
-    display: flex;
+@media screen and (max-width: 1024px) {
+    .custom-container {
+        height: auto;
+        padding: 0 10px;
+    }
+
+    .customer-card {
+        min-width: 280px;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .customer-card .separator {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .customer-card .card-avatar {
+        height: auto;
+        min-width: auto;
+        width: 130px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+
+    .card-avatar > img {
+        max-width: unset;
+        min-height: unset;
+        height: 130px;
+        width: 130px;
+        margin: 15px auto 0 auto;
+        border-radius: 50% !important;
+        object-fit: cover;
+    }
+
+
 }
 

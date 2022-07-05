@@ -33,8 +33,10 @@
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
                            aria-current="page" href="{% url 'index' %}">Кафедры</a>
@@ -43,6 +45,7 @@
                         <a class="nav-link {% if request.resolver_match.url_name == 'student_list' %}active{% endif %}"
                            aria-current="page" href="{% url 'student_list' %}">Cтуденты</a>
                     </li>
+                {% endif %}
                     {% if user.is_staff %}
                         <li class="nav-item head-section end">
                             <a class="nav-link danger-link" aria-current="page"
@@ -72,6 +75,7 @@
                     </div>
                 {% else %}
                     <a class="ml-1 btn btn-sm btn-outline-success" href="{% url 'login' %}">Войти</a>
+                    <a class="ml-1 btn btn-sm btn-outline-success" href="{% url 'register' %}">Регистрация</a>
                 {% endif %}
             </div>
         </div>
