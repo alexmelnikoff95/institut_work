@@ -22,11 +22,11 @@ class StudentAdmin(admin.ModelAdmin):
     list_filter = ('teams_student',)
     search_fields = ('first_name', 'middle_name', 'last_name', 'teams_student')
 
-    def has_delete_permission(self, request, obj=None):
-        return False
-
-    def has_change_permission(self, request, obj=None):
-        return False
+    # def has_delete_permission(self, request, obj=None):
+    #     return False
+    #
+    # def has_change_permission(self, request, obj=None):
+    #     return False
 
 
 @admin.register(HomeWork)

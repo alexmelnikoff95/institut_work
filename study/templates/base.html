@@ -26,9 +26,64 @@
 <body>
 
 
+<div class="custom-container">
+    <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
+                           aria-current="page" href="{% url 'index' %}">Кафедры</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'student_list' %}active{% endif %}"
+                           aria-current="page" href="{% url 'student_list' %}">Cтуденты</a>
+                    </li>
+                    {% if user.is_staff %}
+                        <li class="nav-item head-section end">
+                            <a class="nav-link danger-link" aria-current="page"
+                               href="{% url 'admin:index' %}">Админка</a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+                {% if user.is_authenticated %}
+                    <div class="member-profile">
+                        <span class="p-1 navbar-text">{{ user.teacher|default_if_none:user.username }}</span>
+                        <span class="p-1 navbar-text">{{ user.student|default_if_none:user.username }}</span>
+                        <div class="card-avatar-head dropdown dropstart">
+                            {% if user.teacher.image %}
+                                <img src="{{ user.teacher.image.url }}"
+                                     class="rounded-circle align-content-center dropdown-toggle"
+                                     alt="{{ user.teacher.name }}" data-bs-toggle="dropdown">
+                            {% else %}
+                                <img src="{{ user.student.image.url }}"
+                                     class="rounded-circle align-content-center dropdown-toggle"
+                                     alt="{{ user.student.name }}" data-bs-toggle="dropdown">
+                            {% endif %}
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% else %}
+                    <a class="ml-1 btn btn-sm btn-outline-success" href="{% url 'login' %}">Войти</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
 
 
-{% block content %}
-{% endblock %}
+    {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
+    {% block content %}
+    {% endblock %}
 
+    {% block end_body %}
+
+    {% endblock %}
+</div>
 </body>

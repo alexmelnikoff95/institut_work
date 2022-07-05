@@ -1,14 +1,22 @@
 {% extends "base.html" %}
 {% load bootstrap5 %}
+{% load static %}
+
 
 {% block title %}{% endblock %}
 
 {% block content %}
 
-    {% if user.is_authenticated %}
-        <a class="ml-1 btn btn-sm btn-outline-success" href="{% url 'logout' %}">Выйти</a>
-    {% else %}
-        <a class="ml-1 btn btn-sm btn-outline-success" href="{% url 'login' %}">Войти</a>
-    {% endif %}
+    <div class=" deportament">
+        <div class="row row-cols-1 row-cols-md-2 g-4 mt-2 mx-2 justify-content-center">
+            {% for t in teams %}
+                {% include 'deportament.html' %}
+            {% empty %}
+                <p class="lead text-center">
+                    Тут пусто
+                </p>
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}

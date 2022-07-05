@@ -1,0 +1,18 @@
+{% load static %}
+<div class="customer-card card mb-3 mx-2 shadow">
+    <div class=" separator">
+        <div class="card-avatar">
+            {% if t.image %}
+                <img src="{{ t.image.url }}"
+                     class="rounded-circle rounded-start align-content-center"
+                     alt="{{ t.name }}">
+            {% endif %}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ t.name }}</h5>
+        </div>
+
+
+    </div>
+
+</div>

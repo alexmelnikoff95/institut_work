@@ -1,5 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.db import models
+
+UserModel = get_user_model()
 
 
 class Teams(models.Model):
@@ -22,7 +25,7 @@ class Teacher(models.Model):
     last_name = models.CharField(max_length=50, verbose_name='фамилия')
     image = models.ImageField(verbose_name='фотография преподавателя', blank=True, upload_to='image/teacher')
     teams_teacher = models.ForeignKey(Teams, verbose_name='кафедра', on_delete=models.CASCADE)
-    teacher_User = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(UserModel, on_delete=models.CASCADE, verbose_name='пользователь', null=True, blank=True)
 
     def __str__(self):
         return f'{self.last_name} {self.first_name} {self.middle_name}'
@@ -39,7 +42,7 @@ class Student(models.Model):
     last_name = models.CharField(max_length=50, verbose_name='фамилия студента')
     image = models.ImageField(verbose_name='фотография студента', blank=True, upload_to='image/student')
     teams_student = models.ForeignKey(Teams, verbose_name='кафедра', on_delete=models.CASCADE)
-    student_user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(UserModel, on_delete=models.CASCADE, verbose_name='пользователь', null=True, blank=True)
 
     def __str__(self):
         return f'{self.last_name} {self.first_name} {self.middle_name}'
