@@ -1,0 +1,27 @@
+version: "3.9"
+volumes:
+  db_data:
+  app_media:
+  app_static:
+
+services:
+  app:
+    image: local/study
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - app_media:/app/media
+      - app_static:/app/static_root
+  db:
+    image: mariadb:10.7.1
+    restart: on-failure
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    env_file:
+      - ./.env
