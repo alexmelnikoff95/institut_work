@@ -29,7 +29,6 @@ RUN poetry config virtualenvs.create false \
 
 COPY . /app/
 RUN ["chmod", "+x", "start.sh"]
-RUN echo "$APP_VERSION" > /app/.version
 CMD ["/app/start.sh"]
 
 
