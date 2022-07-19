@@ -20,14 +20,15 @@ RUN python -m pip install -U pip && pip install poetry==$POETRY_VERSION
 RUN mkdir -p /app
 WORKDIR /app
 
-COPY start.sh .
-RUN ["chmod", "+x", "start.sh"]
+
+
 COPY poetry.lock pyproject.toml /app/
 
 RUN poetry config virtualenvs.create false \
   && poetry install $(test "$DJANGO_ENV" == production && echo "--no-dev") --no-interaction --no-ansi
 
-
+COPY . /app/
+RUN ["chmod", "+x", "start.sh"]
 RUN echo "$APP_VERSION" > /app/.version
 CMD ["/app/start.sh"]
 

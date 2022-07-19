@@ -252,5 +252,5 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-compose.env
+.env
 docker.env
