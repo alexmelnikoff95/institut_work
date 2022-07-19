@@ -20,8 +20,6 @@ RUN python -m pip install -U pip && pip install poetry==$POETRY_VERSION
 RUN mkdir -p /app
 WORKDIR /app
 
-
-
 COPY poetry.lock pyproject.toml /app/
 
 RUN poetry config virtualenvs.create false \
