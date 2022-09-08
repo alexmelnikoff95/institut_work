@@ -25,6 +25,8 @@ COPY poetry.lock pyproject.toml /app/
 RUN poetry config virtualenvs.create false \
   && poetry install $(test "$DJANGO_ENV" == production && echo "--no-dev") --no-interaction --no-ansi
 
+VOLUME /app/database
+
 COPY . /app/
 RUN ["chmod", "+x", "start.sh"]
 CMD ["/app/start.sh"]

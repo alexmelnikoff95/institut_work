@@ -54,7 +54,7 @@ class Student(models.Model):
 
 class HomeWork(models.Model):
     """задание для студента"""
-    name = models.CharField(max_length=50, verbose_name='предмет')
+    name = models.CharField(max_length=50)
     text = models.TextField('поле для домашней работы')
 
     def __str__(self):
